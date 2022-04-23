@@ -3,6 +3,8 @@ install:
 		pip install -r requirements.txt
 post-install:
 	python -m textblob.download_corpora
+	python -c "import nltk; nltk.download('all')"
+	
 test:
 	#test
 	python -m pytest -vv --cov=mylib --cov=main test_*.py
