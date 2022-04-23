@@ -1,5 +1,8 @@
 from fastapi.testclient import TestClient
 from main import app
+import nltk
+nltk.download('all')
+nltk.download('brown')
 
 client = TestClient(app)
 
@@ -11,7 +14,7 @@ def test_read_main():
 
 
 def test_read_phrase():
-    response = client.get("/phrase/Barack Obama")
+    response = client.get("/phrase/Barack_Obama")
     assert response.status_code == 200
     assert response.json() == {
         "result": [
