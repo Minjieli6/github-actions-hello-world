@@ -1,11 +1,10 @@
-#e the official lightweight Python image.
-# https://hub.docker.com/_/python
-FROM python:3.9-slim
+FROM python:3.8.13-slim-buster
 
 RUN mkdir -p /app
 COPY . main.py /app/
 WORKDIR /app
 RUN pip install -r requirements.txt
+RUN python -m textblob.download_corpora
 EXPOSE 8080
 CMD [ "main.py" ]
 ENTRYPOINT [ "python" ]
